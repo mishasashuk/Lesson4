@@ -7,7 +7,8 @@ const startOrder = order.indexOf("#") + 1;
 const endOrder = order.indexOf(";");
 const numberOrder = order.slice(startOrder, endOrder);
 
-const startDate = order.indexOf("date=") + 5;
+const markerdate = "date=";
+const startDate = order.indexOf(markerdate) + markerdate.length;
 const endDate = order.indexOf(";", startDate);
 const numberDate = order.slice(startDate, endDate);
 
@@ -19,10 +20,11 @@ const year = date.getFullYear().toString();
 const hours = date.getHours().toString().padStart(2, "0");
 const minutes = date.getMinutes().toString().padStart(2, "0");
 
-const startAmount = order.indexOf("amount=") + 7;
+const markeramount = "amount=";
+const startAmount = order.indexOf(markeramount) + markeramount.length;
 const price = order.slice(startAmount);
 
-const amount = Math.round(parseFloat(price));
+const amount = Math.ceil(parseFloat(price));
 
 const result = `Заказ № ${numberOrder} от ${day}/${month}/${year} ${hours}:${minutes} на сумму ${amount} рублей`;
 
